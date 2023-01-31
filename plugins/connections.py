@@ -29,11 +29,11 @@ async def addconnection(client,message):
             )
             return
 
-    elif (chat_type == "group") or (chat_type == "supergroup"):
+    elif (chat_type == "channel") or (chat_type == "superchannel"):
         group_id = message.chat.id
 
     try:
-        st = await client.get_chat_member(group_id, userid)
+        st = await client.get_chat_member(channel_id, userid)
         if (st.status == "administrator") or (st.status == "creator") or (str(userid) in Config.AUTH_USERS):
             pass
         else:
@@ -48,19 +48,19 @@ async def addconnection(client,message):
         return
 
     try:
-        st = await client.get_chat_member(group_id, "me")
+        st = await client.get_channel_subscriber(channel_id, "me")
         if st.status == "administrator":
-            ttl = await client.get_chat(group_id)
+            ttl = await client.get_channel(channel_id)
             title = ttl.title
 
-            addcon = await add_connection(str(group_id), str(userid))
+            addcon = await add_connection(str(channel_id), str(userid))
             if addcon:
                 await message.reply_text(
                     f"Sucessfully connected to **{title}**\nNow manage your group from my pm !",
                     quote=True,
                     parse_mode="md"
                 )
-                if (chat_type == "group") or (chat_type == "supergroup"):
+                if (chat_type == "channel") or (chat_type == "channelgroup"):
                     await client.send_message(
                         userid,
                         f"Connected to **{title}** !",
@@ -118,9 +118,9 @@ async def connections(client,message):
     buttons = []
     for groupid in groupids:
         try:
-            ttl = await client.get_chat(int(groupid))
+            ttl = await client.get_chat(int(channelid))
             title = ttl.title
-            active = await if_active(str(userid), str(groupid))
+            active = await if_active(str(userid), str(channelid))
             if active:
                 act = " - ACTIVE"
             else:
@@ -128,7 +128,7 @@ async def connections(client,message):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=f"{title}{act}", callback_data=f"groupcb:{groupid}:{title}:{act}"
+                        text=f"{title}{act}", callback_data=f"groupcb:{channelid}:{title}:{act}"
                     )
                 ]
             )
