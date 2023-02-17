@@ -47,12 +47,12 @@ async def cb_handler(client, query):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Subscribe", url="https://www.youtube.com/@GreyMattersYT"),
+                    InlineKeyboardButton("Subscribe", url="https://t.me/CW_Latest_Movie"),
                     InlineKeyboardButton("About Me", callback_data="about_data")
                 ],
                 [
-                    InlineKeyboardButton("BOT Channel", url="https://t.me/GreyMatter_Bots"),
-                    InlineKeyboardButton("Support Group", url="https://t.me/greymatters_support")
+                    InlineKeyboardButton("BOT Channel", url="https://t.me/CW_Latest_Movie"),
+                    InlineKeyboardButton("Support Group", url="https://t.me/+5HUiyc8CfkxkNzg1")
                 ]
             ]
         )
@@ -70,7 +70,7 @@ async def cb_handler(client, query):
             [
                 [
                     InlineKeyboardButton(
-                        "SOURCE CODE", url="https://github.com/Greymattersbot/Unlimited-Filter-Bot")
+                        "SOURCE CODE", url="https://t.me/CW_Latest_Movie")
                 ],
                 [
                     InlineKeyboardButton("BACK", callback_data="help_data"),
